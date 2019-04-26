@@ -15,18 +15,17 @@ function CharName(props) {
 
 export default CharName;
 */
+let emptyArray = [];
 
 class CharName extends React.Component {
   constructor() {
     super();
     this.state = {
-      homePlanet: []
+      homeworld: emptyArray
     };
   }
   componentDidMount() {
     this.getPlanet(this.props.char.homeworld);
-    console.log(this.props.char.homeworld);
-    console.log(this.state);
   }
 
   getPlanet = URL => {
@@ -35,8 +34,9 @@ class CharName extends React.Component {
         return res.json();
       })
       .then(data => {
+        emptyArray.push(data);
         this.setState({
-          homePlanet: data.results
+          homeworld: emptyArray
         });
       })
       .catch(err => {
@@ -45,13 +45,19 @@ class CharName extends React.Component {
   };
 
   render() {
+    console.log(this.state);
     return (
       <div>
         <p className="name">{this.props.char.name}</p>
         <ul>
           <li>Birth Year: {this.props.char.birth_year}</li>
           <li>Weight: {this.props.char.mass}KG</li>
-          <HomePlanet planet={this.state.homePlanet} />
+          <HomePlanet
+            planet={this.state.homeworld}
+            key={this.props.char.key}
+            testPass={this.state.homeworld}
+            charURL={this.props.char.homeworld}
+          />
         </ul>
       </div>
     );
