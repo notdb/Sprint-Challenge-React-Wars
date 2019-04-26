@@ -6,3 +6,16 @@
   text-shadow: 1px 1px 5px #fff;
 }
 /* write your parent styles in here for your App.js */
+
+.App {
+    width: 750px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+.Header {
+    width: 750px;
+    height: 200px;
+}
