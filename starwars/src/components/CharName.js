@@ -20,7 +20,7 @@ class CharName extends React.Component {
   constructor() {
     super();
     this.state = {
-      homePlanet: {}
+      homePlanet: []
     };
   }
   componentDidMount() {
@@ -35,7 +35,9 @@ class CharName extends React.Component {
         return res.json();
       })
       .then(data => {
-        this.setState({ homePlanet: data });
+        this.setState({
+          homePlanet: data.results
+        });
       })
       .catch(err => {
         throw new Error(err);
